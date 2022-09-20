@@ -38,6 +38,10 @@ class ViewController: UIViewController {
         blueTextField.text = String(format: "%.2f", blueSlider.value)
         
         paintView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: 0.5, blue: 0.5, alpha: 1)
+        
+        addDoneButtonTo(redTextField)
+        addDoneButtonTo(greenTextField)
+        addDoneButtonTo(blueTextField)
     }
     
     func paint(){
@@ -64,55 +68,87 @@ class ViewController: UIViewController {
         paint()
     }
     
-    @IBAction func redTFA() {
-        guard let textToFloat = Float(redTextField.text!) else {
-            redTextField.text = redNLabel.text
+    @IBAction func actionTFA(_ textField: UITextField) {
+        guard let textToFloat = Float(textField.text!) else {
+            textField.text = redNLabel.text
             return
             
         }
         if textToFloat > 1 || textToFloat < 0 {
-            redTextField.text = redNLabel.text
+            textField.text = redNLabel.text
             return
         }
-        redTextField.text = String(format: "%.2f", textToFloat)
-        redNLabel.text = redTextField.text
-        redSlider.value = textToFloat
+        textField.text = String(format: "%.2f", textToFloat)
+        //redNLabel.text = textField.text
+        //redSlider.value = textToFloat
         
-        paint()
-    }
-    
-    @IBAction func greenTFA() {
-        guard let textToFloat = Float(greenTextField.text!) else {
-            greenTextField.text = greenLabel.text
-            return
-            
+        switch textField.tag {
+        case 0: redSlider.value = textToFloat
+        case 1: greenSlider.value = textToFloat
+        case 2: blueSlider.value = textToFloat
+        default: break
         }
-        if textToFloat > 1 || textToFloat < 0 {
-            greenTextField.text = greenLabel.text
-            return
-        }
-        greenTextField.text = String(format: "%.2f", textToFloat)
-        greenLabel.text = greenTextField.text
-        greenSlider.value = textToFloat
-        
-        paint()
-    }
-    
-    @IBAction func blueTFA() {
-        guard let textToFloat = Float(blueTextField.text!) else {
-            blueTextField.text = blueLabel.text
-            return
-            
-        }
-        if textToFloat > 1 || textToFloat < 0 {
-            blueTextField.text = blueLabel.text
-            return
-        }
-        blueTextField.text = String(format: "%.2f", textToFloat)
-        blueLabel.text = blueTextField.text
-        blueSlider.value = textToFloat
         
         paint()
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    
+    // Скрываем клавиатуру нажатием на "Done"
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Скрытие клавиатуры по тапу за пределами Text View
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        view.endEditing(true) // Скрывает клавиатуру, вызванную для любого объекта
+    }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        print(#function)
+//        guard let text = textField.text else { return }
+//
+//        if let currentValue = Float(text) {
+//
+//            switch textField.tag {
+//            case 0: redSlider.value = currentValue
+//            case 1: greenSlider.value = currentValue
+//            case 2: blueSlider.value = currentValue
+//            default: break
+//            }
+//
+//            paint()
+//        } else {
+//            showAlert(title: "Wrong format!", message: "Please enter correct value")
+//        }
+//    }
+}
+
+extension ViewController {
+    private func addDoneButtonTo(_ textField: UITextField){
+        let keyboardToolbar = UIToolbar()
+        textField.inputAccessoryView = keyboardToolbar
+        keyboardToolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(didTapDone))
+        
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        keyboardToolbar.items = [flexBarButton, doneButton]
+    }
+    
+    @objc private func didTapDone() {
+        view.endEditing(true)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}

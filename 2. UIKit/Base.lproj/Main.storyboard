@@ -59,7 +59,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                         <connections>
-                                            <action selector="redTFA" destination="BYZ-38-t0r" eventType="editingDidEnd" id="xfk-3A-krS"/>
+                                            <action selector="actionTFA:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="A5P-yW-O4F"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -96,7 +96,7 @@
                                             <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="SFw-fY-m56"/>
                                         </connections>
                                     </slider>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-vN-2qR">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-vN-2qR">
                                         <rect key="frame" x="303" y="0.0" width="50" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="DUO-Pg-a8H"/>
@@ -104,7 +104,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                         <connections>
-                                            <action selector="greenTFA" destination="BYZ-38-t0r" eventType="editingDidEnd" id="A6C-6m-wKP"/>
+                                            <action selector="actionTFA:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="4M8-u7-d2b"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -141,7 +141,7 @@
                                             <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="Q7Y-vm-9ep"/>
                                         </connections>
                                     </slider>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zKP-6g-MCP">
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zKP-6g-MCP">
                                         <rect key="frame" x="303" y="0.0" width="50" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="jXR-bs-dHb"/>
@@ -149,7 +149,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                         <connections>
-                                            <action selector="blueTFA" destination="BYZ-38-t0r" eventType="editingDidEnd" id="L0a-pK-ob2"/>
+                                            <action selector="actionTFA:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Lwu-pX-MQf"/>
                                         </connections>
                                     </textField>
                                 </subviews>
